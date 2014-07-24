@@ -46,11 +46,11 @@ public class MyDvdService implements DvdService {
         if (dvd == null){
             throw new DvdNotFoundException();
         }
-        String review = returnFrist10Words(dvd.getReview());
+        String review = returnFirst10Words(dvd.getReview());
         return String.format("[%s] %s - %s",dvd.getReference(), dvd.getTitle(), review);
     }
 
-    private String returnFrist10Words(String string) {
+    private String returnFirst10Words(String string) {
         Pattern pattern = Pattern.compile("([\\S]+\\s*){1,10}");
         Matcher matcher = pattern.matcher(string);
         if (!matcher.find()){
