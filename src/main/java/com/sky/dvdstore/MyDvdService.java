@@ -22,7 +22,7 @@ public class MyDvdService implements DvdService {
         if (dvd == null){
             throw new DvdNotFoundException();
         }
-        return null;
+        return dvd;
     }
 
     private void checkPrefix(String dvdReference) {
