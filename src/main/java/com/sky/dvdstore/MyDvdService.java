@@ -1,5 +1,10 @@
 package com.sky.dvdstore;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -9,6 +14,7 @@ public class MyDvdService implements DvdService {
 
     DvdRepository repository;
     private String DVD_PREFIX = "DVD-";
+    private List charactersToRemove = Arrays.asList(' ',',');
 
     public MyDvdService(DvdRepository repository) {
         this.repository = repository;
@@ -40,6 +46,27 @@ public class MyDvdService implements DvdService {
         if (dvd == null){
             throw new DvdNotFoundException();
         }
-        return String.format("[%s] %s - %s",dvd.getReference(), dvd.getTitle(), dvd.getReview());
+        String review = returnFrist10Words(dvd.getReview());
+        return String.format("[%s] %s - %s",dvd.getReference(), dvd.getTitle(), review);
+    }
+
+    private String returnFrist10Words(String string) {
+        Pattern pattern = Pattern.compile("([\\S]+\\s*){1,10}");
+        Matcher matcher = pattern.matcher(string);
+        matcher.find();
+        String shorterReview = matcher.group();
+        if (shorterReview.equals(string)){
+            return shorterReview;
+        }
+        return removeTrailingCharacters(shorterReview)+"...";
+    }
+
+    private String removeTrailingCharacters(String string) {
+        for (int i = string.length()-1; i >0 ; --i) {
+            if (! charactersToRemove.contains(string.charAt(i))){
+                return string.substring(0,i+1);
+            }
+        }
+        throw new RuntimeException("Review does not contain any valid character...");
     }
 }

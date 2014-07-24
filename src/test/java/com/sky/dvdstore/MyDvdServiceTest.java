@@ -77,7 +77,7 @@ public class MyDvdServiceTest {
                 "is more than capable of rivalling any of them.");
         when(dvdRepository.retrieveDvd("DVD-999")).thenReturn(dvd);
         String retrievedDvd = myDvdService.getDvdSummary("DVD-999");
-        assertThat(retrievedDvd, is("[DVD-S765] Shrek - Big green monsters, they're just all the rage these days...\n"));
+        assertThat(retrievedDvd, is("[DVD-S765] Shrek - Big green monsters, they're just all the rage these days..."));
     }
 
 }
