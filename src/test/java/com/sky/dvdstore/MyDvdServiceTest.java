@@ -27,6 +27,10 @@ public class MyDvdServiceTest {
     public void testRetrieveDvdTextMustContainDVDPrefix() throws Exception {
         myDvdService.retrieveDvd("NotHavingDVD-Prefix");
     }
+    @Test(expected=NullPointerException.class)
+    public void testRetrieveDvdNull() throws Exception {
+        myDvdService.retrieveDvd(null);
+    }
 
     @Test(expected=DvdNotFoundException.class)
     public void testRetrieveDvdNotFound() throws Exception {
