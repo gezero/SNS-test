@@ -50,6 +50,7 @@ public class MyDvdService implements DvdService {
         return String.format("[%s] %s - %s",dvd.getReference(), dvd.getTitle(), review);
     }
 
+    /* todo: it should be discussed what is considered word and if the trailing special characters should be removed     */
     private String returnFirst10Words(String string) {
         Pattern pattern = Pattern.compile("([\\S]+\\s*){1,10}");
         Matcher matcher = pattern.matcher(string);
