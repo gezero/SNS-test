@@ -53,7 +53,9 @@ public class MyDvdService implements DvdService {
     private String returnFrist10Words(String string) {
         Pattern pattern = Pattern.compile("([\\S]+\\s*){1,10}");
         Matcher matcher = pattern.matcher(string);
-        matcher.find();
+        if (!matcher.find()){
+            throw new RuntimeException("Review does not contain any valid character...");
+        }
         String shorterReview = matcher.group();
         if (shorterReview.equals(string)){
             return shorterReview;
