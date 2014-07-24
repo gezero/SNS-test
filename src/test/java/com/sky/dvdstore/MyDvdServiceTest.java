@@ -54,6 +54,10 @@ public class MyDvdServiceTest {
     public void testGetDvdSummaryDvdNotFound() throws Exception {
         myDvdService.getDvdSummary("DVD-999");
     }
+    @Test(expected=NullPointerException.class)
+    public void testGetDvdSummaryDvdNull() throws Exception {
+        myDvdService.getDvdSummary(null);
+    }
 
     @Test
     public void testGetDvdSummaryShortSumary() throws DvdNotFoundException {

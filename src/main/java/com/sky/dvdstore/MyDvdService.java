@@ -8,7 +8,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class MyDvdService implements DvdService {
 
     DvdRepository repository;
-    private String DVD_PREFIX = "DVD-PREFIX";
+    private String DVD_PREFIX = "DVD-";
 
     public MyDvdService(DvdRepository repository) {
         this.repository = repository;
@@ -30,6 +30,12 @@ public class MyDvdService implements DvdService {
 
     @Override
     public String getDvdSummary(String dvdReference) throws DvdNotFoundException {
+        checkNotNull(dvdReference);
+        checkPrefix(dvdReference);
+        Dvd dvd = repository.retrieveDvd(dvdReference);
+        if (dvd == null){
+            throw new DvdNotFoundException();
+        }
         return null;
     }
 }
