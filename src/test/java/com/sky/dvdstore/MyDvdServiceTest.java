@@ -37,7 +37,7 @@ public class MyDvdServiceTest {
         myDvdService.retrieveDvd("DVD-999");
     }
 
-    @Test(expected=DvdNotFoundException.class)
+    @Test
     public void testRetrieveDvdFound() throws Exception {
         Dvd dvd = new Dvd("DVD-TG423","Topgun", "All action film");
         when(dvdRepository.retrieveDvd("DVD-999")).thenReturn(dvd);

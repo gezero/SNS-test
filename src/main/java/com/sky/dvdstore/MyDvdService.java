@@ -18,6 +18,10 @@ public class MyDvdService implements DvdService {
     public Dvd retrieveDvd(String dvdReference) throws DvdNotFoundException {
         checkNotNull(dvdReference);
         checkPrefix(dvdReference);
+        Dvd dvd = repository.retrieveDvd(dvdReference);
+        if (dvd == null){
+            throw new DvdNotFoundException();
+        }
         return null;
     }
 
