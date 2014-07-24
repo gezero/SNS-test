@@ -13,8 +13,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class MyDvdService implements DvdService {
 
     DvdRepository repository;
-    private String DVD_PREFIX = "DVD-";
-    private List charactersToRemove = Arrays.asList(' ',',');
+    public static final String DVD_PREFIX = "DVD-";
+    private final static List charactersToRemove = Arrays.asList(' ',',');
 
     public MyDvdService(DvdRepository repository) {
         this.repository = repository;
