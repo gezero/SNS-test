@@ -40,6 +40,6 @@ public class MyDvdService implements DvdService {
         if (dvd == null){
             throw new DvdNotFoundException();
         }
-        return null;
+        return String.format("[%s] %s - %s",dvd.getReference(), dvd.getTitle(), dvd.getReview());
     }
 }

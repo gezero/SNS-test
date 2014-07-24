@@ -6,8 +6,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.mockito.Mockito.when;
 
 public class MyDvdServiceTest {
@@ -64,7 +65,7 @@ public class MyDvdServiceTest {
         Dvd dvd = new Dvd("DVD-TG423","Topgun", "All action film");
         when(dvdRepository.retrieveDvd("DVD-999")).thenReturn(dvd);
         String retrievedDvd = myDvdService.getDvdSummary("DVD-999");
-        assertThat(retrievedDvd, is("DVD-TG423] Topgun - All action film"));
+        assertThat(retrievedDvd, is(equalTo("[DVD-TG423] Topgun - All action film")));
     }
 
     @Test
